@@ -85,14 +85,11 @@ public class StreamingAnalytics {
 
             //Setup Properties for the Kafka Input Stream
             Properties props = new Properties();
-            props.put(StreamsConfig.APPLICATION_ID_CONFIG,
-                    "streaming-analytics-pipe");
-            props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG,
-                    "localhost:9092");
-            props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG,
-                    Serdes.String().getClass());
-            props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG,
-                    Serdes.String().getClass());
+            props.put(StreamsConfig.APPLICATION_ID_CONFIG, "streaming-analytics-pipe");
+            //props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
+            props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, "my-cluster-kafka-bootstrap.kafka.svc.cluster.local:9092");
+            props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());
+            props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass());
             props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG,"earliest");
 
             //For immediate results during testing
@@ -105,8 +102,7 @@ public class StreamingAnalytics {
             //Create the source node for Orders
             KStream<String,String> ordersInput
                     = builder.stream("streaming.orders.input",
-                                        Consumed.with(
-                                                stringSerde, stringSerde));
+                                        Consumed.with(stringSerde, stringSerde));
 
             ObjectMapper mapper = new ObjectMapper();
 

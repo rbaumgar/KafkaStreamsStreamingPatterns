@@ -19,10 +19,10 @@ import java.util.Random;
 public class KafkaOrdersDataGenerator implements Runnable {
 
 
-    public static final String ANSI_RESET = "\u001B[0m";
-    public static final String ANSI_GREEN = "\u001B[32m";
-    public static final String ANSI_PURPLE = "\u001B[35m";
-    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_RESET =     "\u001B[0m";
+    public static final String ANSI_GREEN =     "\u001B[32m";
+    public static final String ANSI_PURPLE =    "\u001B[35m";
+    public static final String ANSI_BLUE =      "\u001B[34m";
 
     //Kafka topic to publish to
     public static final String topic = "streaming.orders.input";
@@ -42,16 +42,13 @@ public class KafkaOrdersDataGenerator implements Runnable {
 
             //Setup Kafka Client
             Properties kafkaProps = new Properties();
-            kafkaProps.put("bootstrap.servers","localhost:9092");
-            //kafkaProps.put("bootstrap.servers","my-cluster-kafka-bootstrap-kafka.apps.ocp4.openshift.freeddns.org:443");
+            //kafkaProps.put("bootstrap.servers","localhost:9092");
+            kafkaProps.put("bootstrap.servers","my-cluster-kafka-bootstrap.kafka.svc.cluster.local:9092");
 
-            kafkaProps.put("key.serializer",
-                    "org.apache.kafka.common.serialization.StringSerializer");
-            kafkaProps.put("value.serializer",
-                    "org.apache.kafka.common.serialization.StringSerializer");
+            kafkaProps.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+            kafkaProps.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 
-            Producer<String,String> myProducer
-                    = new KafkaProducer<String, String>(kafkaProps);
+            Producer<String,String> myProducer = new KafkaProducer<String, String>(kafkaProps);
 
             //Define list of Products
             List<String> products = new ArrayList<String>();
@@ -75,7 +72,6 @@ public class KafkaOrdersDataGenerator implements Runnable {
 
             //Create order ID based on the timestamp
             int orderId = (int)Math.floor(System.currentTimeMillis()/1000);
-            System.out.println("orderId: " + orderId);
 
             //Generate 100 sample order records
             for(int i=0; i < 100; i++) {

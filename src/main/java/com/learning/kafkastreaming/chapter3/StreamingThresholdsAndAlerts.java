@@ -52,14 +52,11 @@ public class StreamingThresholdsAndAlerts {
 
             //Setup Properties for the Kafka Input Stream
             Properties props = new Properties();
-            props.put(StreamsConfig.APPLICATION_ID_CONFIG,
-                    "alerts-and-thresholds-pipe");
-            props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG,
-                    "localhost:9092");
-            props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG,
-                    Serdes.String().getClass());
-            props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG,
-                    Serdes.String().getClass());
+            props.put(StreamsConfig.APPLICATION_ID_CONFIG, "alerts-and-thresholds-pipe");
+            //props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
+            props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, "my-cluster-kafka-bootstrap.kafka.svc.cluster.local:9092");
+            props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());
+            props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass());
             props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
 
             //For immediate results during testing

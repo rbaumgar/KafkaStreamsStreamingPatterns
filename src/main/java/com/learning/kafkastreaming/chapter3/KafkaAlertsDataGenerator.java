@@ -41,12 +41,11 @@ public class KafkaAlertsDataGenerator implements Runnable {
 
             //Setup Kafka Client
             Properties kafkaProps = new Properties();
-            kafkaProps.put("bootstrap.servers","localhost:9092");
+            //kafkaProps.put("bootstrap.servers","localhost:9092");
+            kafkaProps.put("bootstrap.servers","my-cluster-kafka-bootstrap.kafka.svc.cluster.local:9092");
 
-            kafkaProps.put("key.serializer",
-                    "org.apache.kafka.common.serialization.StringSerializer");
-            kafkaProps.put("value.serializer",
-                    "org.apache.kafka.common.serialization.StringSerializer");
+            kafkaProps.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+            kafkaProps.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 
             Producer<String,String> myProducer
                     = new KafkaProducer<String, String>(kafkaProps);

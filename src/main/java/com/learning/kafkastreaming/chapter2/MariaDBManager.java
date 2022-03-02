@@ -33,7 +33,8 @@ public class MariaDBManager implements Runnable, Serializable {
 
     public void setUp() {
         System.out.println("Setting up MariaDB Connection");
-        String url = "jdbc:mysql://localhost:3306/streaming";
+        //String url = "jdbc:mysql://localhost:3306/streaming";
+        String url = "jdbc:mysql://streaming.kafka.svc.cluster.local:3306/streaming";
         try {
             conn = DriverManager.getConnection(url,"streaming","streaming");
         }

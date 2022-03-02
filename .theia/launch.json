@@ -1,0 +1,26 @@
+{
+ "version": "0.2.0",
+ "configurations": [
+    {
+        "type": "java",
+        "name": "CodeLens (Launch) - StreamingAnalytics",
+        "request": "launch",
+        "mainClass": "com.learning.kafkastreaming.chapter2.StreamingAnalytics",
+        "projectName": "kafkastreams-streaming-patterns"
+    },
+    {
+        "type": "java",
+        "name": "CodeLens (Launch) - StreamingThresholdsAndAlerts",
+        "request": "launch",
+        "mainClass": "com.learning.kafkastreaming.chapter3.StreamingThresholdsAndAlerts",
+        "projectName": "kafkastreams-streaming-patterns"
+    },
+    {
+        "type": "java",
+        "name": "Debug (Attach) - Remote",
+        "request": "attach",
+        "hostName": "localhost",
+        "port": 5005
+    }
+]
+ }
